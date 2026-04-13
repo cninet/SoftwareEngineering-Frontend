@@ -47,7 +47,7 @@ export default function AnnouncementPanel({announcementData, isAdmin=false, show
           isAdmin && showSearch ?
           <div className="flex flex-row justify-center gap-4">
             <button
-              onClick={() => router.push(`/dentists/add`)}
+              onClick={() => router.push(`/announcement/add`)}
               className="cursor-pointer bg-black text-white text-xl font-bold py-2 px-8 mt-5 rounded-full hover:bg-gray-800 transition flex items-center gap-2 active:scale-95"
               >
                 Add Announcement

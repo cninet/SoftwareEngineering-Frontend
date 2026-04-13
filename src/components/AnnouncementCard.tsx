@@ -10,17 +10,16 @@ export default function AnnouncementCard({id, logoSrc, title, date}: {id: string
   const formattedDate = `${day}/${month}/${year}`;
 
   return(
-    <div className="flex flex-row w-[35%] h-[220px] bg-[#e5e5e5] shadow-sm hover:shadow-md transition-shadow overflow-hidden m-5">
+    <div className="flex flex-row w-[45%] h-[220px] bg-[#e5e5e5] shadow-sm hover:shadow-md transition-shadow overflow-hidden m-5">
     
       {/* Logo */}
       <div className="w-[40%] relative bg-white flex-shrink-0">
-        {/* TODO */}
-        {/* <Image 
+        <Image 
           src={logoSrc} 
           alt={title} 
           fill={true} 
           className="object-contain p-2" 
-        /> */}
+        />
       </div>
 
       {/* Description */}
@@ -39,7 +38,7 @@ export default function AnnouncementCard({id, logoSrc, title, date}: {id: string
             <span>Date : {formattedDate}</span>
           </div>
 
-          <h2 className="text-[#4a4a4a] text-lg sm:text-xl font-medium leading-snug line-clamp-3">
+          <h2 className="text-[#4a4a4a] text-left text-lg sm:text-xl font-medium leading-snug line-clamp-3">
             {title}
           </h2>
         </div>
