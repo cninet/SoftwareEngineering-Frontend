@@ -47,6 +47,11 @@ interface AnnouncementJson {
 	data : AnnouncementItem[]
 }
 
+interface AnnouncementJsonSingle {
+	success:boolean,
+	data:AnnouncementItem
+}
+
 interface AnnouncementItem {
   _id: string;               
   author: {

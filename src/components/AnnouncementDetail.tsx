@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { CircularProgress } from "@mui/material";
 
-export default function AnnouncementDetail({ announcementJsonReady, isAdmin }: { announcementJsonReady: AnnouncementJson, isAdmin: boolean }) {
+export default function AnnouncementDetail({ announcementJsonReady, isAdmin }: { announcementJsonReady: AnnouncementJsonSingle, isAdmin: boolean }) {
 
   const announcementData: AnnouncementItem = announcementJsonReady.data;
 
