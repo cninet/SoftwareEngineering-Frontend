@@ -10,15 +10,21 @@ import getAnnouncements from "@/libs/getAnnoucements";
 export default async function AnnouncementPage({searchParams} : {searchParams: Promise<{ page?: string }>}){
 
   const { page } = await searchParams;
-  const currentPage = await Number(page) || 1;
+
+  let currentPage = await Number(page) || 1;
+  currentPage = currentPage < 0 ? 1 : currentPage;
   
   const session = await getServerSession(authOptions)
   const token = session?.user.token
   const isAdmin = session?.user.role === 'admin'
 
-  const announcements: AnnouncementJson = await getAnnouncements(currentPage);
+  let announcements: AnnouncementJson = await getAnnouncements(1);
 
   const totalPage = Math.ceil(announcements.pagination.total / 10.0)
+
+  currentPage = currentPage > totalPage ? totalPage : currentPage;
+
+  announcements =  await getAnnouncements(currentPage);
 
   const sortedAnnouncement = announcements.data.sort((a:any,b:any)=>
     new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
