@@ -8,6 +8,10 @@ import { CircularProgress } from "@mui/material";
 
 export default function AnnouncementDetail({ announcementJsonReady, isAdmin }: { announcementJsonReady: AnnouncementJsonSingle, isAdmin: boolean }) {
 
+  if (!announcementJsonReady.data) {
+    return <div className="p-10 font-bold text-3xl text-center">ไม่พบข้อมูลประกาศ</div>;
+  }
+
   const announcementData: AnnouncementItem = announcementJsonReady.data;
 
   const dateObj = new Date(announcementData.createdAt);
@@ -15,10 +19,6 @@ export default function AnnouncementDetail({ announcementJsonReady, isAdmin }: {
   const month = String(dateObj.getMonth() + 1).padStart(2, '0');
   const year = dateObj.getFullYear();
   const formattedDate = `${day}/${month}/${year}`;
-
-  if (!announcementJsonReady.data) {
-    return <div className="p-10 font-bold text-3xl text-center">ไม่พบข้อมูลประกาศ</div>;
-  }
 
   return (
     <main className="max-w-6xl mx-auto px-8 w-full m-10 font-sukhumvit">

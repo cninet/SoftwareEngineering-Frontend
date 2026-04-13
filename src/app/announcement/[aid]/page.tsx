@@ -3,7 +3,7 @@ import Loading from "@/components/Loading";
 import { getServerSession } from "next-auth";
 import { Suspense } from "react";
 import getAnnouncement from "@/libs/getAnnouncement";
-import AnnouncementDatail from "@/components/AnnouncementDetail";
+import AnnouncementDetail from "@/components/AnnouncementDetail";
 
 export default async function AnnouncementDetailPage({ params }: { params: Promise<{ aid: string }> }) {
     const { aid } = await params;
@@ -14,7 +14,7 @@ export default async function AnnouncementDetailPage({ params }: { params: Promi
 
     return (
         <Suspense fallback={<Loading />}>
-            <AnnouncementDatail announcementJsonReady={announcement} isAdmin={isAdmin}/>
+            <AnnouncementDetail announcementJsonReady={announcement} isAdmin={isAdmin}/>
         </Suspense>
     );
 }
