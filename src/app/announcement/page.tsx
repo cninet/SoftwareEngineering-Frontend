@@ -15,16 +15,18 @@ export default async function AnnouncementPage({searchParams} : {searchParams: P
   currentPage = currentPage < 0 ? 1 : currentPage;
   
   const session = await getServerSession(authOptions)
-  const token = session?.user.token
   const isAdmin = session?.user.role === 'admin'
 
-  let announcements: AnnouncementJson = await getAnnouncements(1);
+  // fetch รอบแรกได้ total กับข้อมูล ที่มี or ไม่มี
+  let announcements: AnnouncementJson = await getAnnouncements(currentPage);
 
   const totalPage = Math.ceil(announcements.pagination.total / 10.0)
 
-  currentPage = currentPage > totalPage ? totalPage : currentPage;
-
-  announcements =  await getAnnouncements(currentPage);
+  // ถ้า out of range
+  if (currentPage > totalPage) {
+    currentPage = 1
+    announcements = await getAnnouncements(currentPage);
+  }
 
   const sortedAnnouncement = announcements.data.sort((a:any,b:any)=>
     new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
