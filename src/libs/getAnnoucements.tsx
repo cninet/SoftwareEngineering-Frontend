@@ -5,9 +5,9 @@ export default async function getAnnouncements(currentPage: number){
    if(!respond.ok){
 	throw new Error("Failed to get Announcements")
    }
-   const response: AnnouncementJson = await respond.json();
 
-   return response.data.sort((a:any,b:any)=>
-   new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-)
+   return respond.json();
+   // response.data.sort((a:any,b:any)=>
+   // new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+   // )
 }

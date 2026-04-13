@@ -4,7 +4,7 @@ import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import AnnouncementCard from './AnnouncementCard';
 import { Pagination, Stack } from '@mui/material';
 
-export default function AnnouncementPanel({currentPage, announcementData, isAdmin=false, showSearch=false}: {currentPage: number, announcementData: AnnouncementItem[], isAdmin?: boolean, showSearch?: boolean}) {
+export default function AnnouncementPanel({totalPage, currentPage, announcementData, isAdmin=false, showSearch=false}: {totalPage: number, currentPage: number, announcementData: AnnouncementItem[], isAdmin?: boolean, showSearch?: boolean}) {
   const router = useRouter()
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -67,7 +67,7 @@ export default function AnnouncementPanel({currentPage, announcementData, isAdmi
         </div>
 
         <div className='flex justify-center mt-20'>
-          <Pagination count={10} color="primary" page={currentPage} onChange={handleChangePage}/>
+          <Pagination count={totalPage} color="primary" page={currentPage} onChange={handleChangePage}/>
         </div>
       </div>
     </section>
