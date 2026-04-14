@@ -11,11 +11,36 @@ export default function AnnouncementDetail({ announcementJsonReady, isAdmin }: {
 
   const announcementData: AnnouncementItem = announcementJsonReady.data;
 
+  const monthMap: Record<string, string> = {
+    '01': 'Jan',
+    '02': 'Feb',
+    '03': 'Mar',
+    '04': 'Apr',
+    '05': 'May',
+    '06': 'Jun',
+    '07': 'Jul',
+    '08': 'Aug',
+    '09': 'Sep',
+    '10': 'Oct',
+    '11': 'Nov',
+    '12': 'Dec'
+  };
+
   const dateObj = new Date(announcementData.createdAt);
   const day = String(dateObj.getDate()).padStart(2, '0');
-  const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+  const month = monthMap[String(dateObj.getMonth() + 1).padStart(2, '0')];
   const year = dateObj.getFullYear();
-  const formattedDate = `${day}/${month}/${year}`;
+  let hour = dateObj.getHours();
+  const period = hour >= 12 ? 'PM' : 'AM';
+  
+  if (hour == 0) {
+    hour = 12
+  } else if (hour > 12) {
+    hour -= 12;
+  }
+
+  const minute = String(dateObj.getMinutes()).padStart(2, '0');
+  const formattedDate = `${day} ${month} ${year} ${hour}:${minute} ${period}`;
 
   const formatText = (text: string) => {
     return text
