@@ -59,7 +59,7 @@ export default function AnnouncementDetail({ announcementJsonReady, isAdmin }: {
       {/* Header */}
       <div>
         <div className="text-3xl my-2">
-          <h1 className="inline font-normal" dangerouslySetInnerHTML={{ __html: formattedTitle }} />
+          <h1 className="inline font-bold" dangerouslySetInnerHTML={{ __html: formattedTitle }} />
           {/* <h1 className="inline font-bold"></h1><h1 className="inline font-normal">{formattedTitle}</h1> */}
         </div>
 
