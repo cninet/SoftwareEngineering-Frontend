@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 
 const monthMap: Record<string, string> = {
   '01': 'Jan', '02': 'Feb', '03': 'Mar', '04': 'Apr',
@@ -38,10 +37,8 @@ export default function FeaturedAnnouncementCard({
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
 
   return (
-    <Link
-      href={`/announcement/${id}`}
-      className="relative flex flex-row w-full h-full bg-white rounded-xl font-sukhumvit shadow-sm hover:shadow-md transition-shadow overflow-hidden"
-    >
+    <div className="relative flex flex-row w-full h-full bg-white font-sukhumvit overflow-hidden">
+
       {/* Left — image */}
       <div className="w-[55%] relative flex-shrink-0">
         <Image
@@ -76,6 +73,6 @@ export default function FeaturedAnnouncementCard({
           />
         </div>
       </div>
-    </Link>
+    </div>
   );
 }
