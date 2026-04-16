@@ -40,7 +40,7 @@ export default function AnnouncementCard({
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
 
   return (
-    <div className={`relative flex flex-row w-full h-full bg-white rounded-xl font-sukhumvit shadow-sm hover:shadow-md transition-shadow overflow-hidden ${className}`}>
+    <div className={`relative flex flex-row w-full h-full bg-white rounded-xl font-sukhumvit transition-shadow overflow-hidden ${className}`}>
 
       {/* New badge — from HEAD, only renders when isNew=true */}
       {isNew && (
