@@ -29,31 +29,34 @@ export default function BookingCard({
 
   return (
     <div className="w-full bg-white border border-gray-100 rounded-3xl p-8 shadow-sm hover:shadow-lg transition-all duration-300">
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+      
+      <div className="flex flex-col gap-6">
         
-        {/* ส่วนข้อมูลด้านซ้าย */}
-        <div className="flex-grow">
-          <div className="flex items-center gap-3 mb-5">
-            <span className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest ${isAdmin ? 'bg-indigo-100 text-indigo-700' : 'bg-cyan-100 text-cyan-700'}`}>
-              {isAdmin ? 'System Record' : 'My Appointment'}
-            </span>
-            <span className="text-xs font-mono text-gray-500 bg-gray-50 px-2 py-1 rounded">
-              ID: {booking._id.slice(-8)}
-            </span>
-          </div>
+        {/* แถวที่ 1: ส่วน Header ด้านบน (System Record กับ ID) */}
+        <div className="flex flex-wrap items-center gap-3">
+          <span className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest ${isAdmin ? 'bg-indigo-100 text-indigo-700' : 'bg-cyan-100 text-cyan-700'}`}>
+            {isAdmin ? 'System Record' : 'My Appointment'}
+          </span>
+          <span className="text-xs font-mono text-gray-500 bg-gray-50 px-2 py-1 rounded break-all">
+            ID: {booking._id}
+          </span>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* แถวที่ 2: ส่วนรายละเอียด และปุ่มกด ให้อยู่ในระนาบเดียวกัน (เมื่ออยู่บนจอใหญ่) */}
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 border-t border-gray-50 pt-2 lg:pt-0 lg:border-t-0">
+          
+          {/* ข้อมูล Grid (กินพื้นที่ที่เหลือ) */}
+          <div className="flex-grow grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
             {isAdmin && (
               <div className="flex flex-col border-l-4 border-indigo-500 pl-4">
                 <span className="text-[11px] text-gray-400 font-bold uppercase tracking-wider mb-1">Patient Name</span>
-                {/* เอา truncate ออก เพื่อให้แสดงชื่อเต็ม */}
                 <span className="text-xl font-extrabold text-gray-800 break-words">{booking.user.name}</span>
               </div>
             )}
             
             <div className="flex flex-col border-l-4 border-blue-500 pl-4">
               <span className="text-[11px] text-gray-400 font-bold uppercase tracking-wider mb-1">Assigned Dentist</span>
-              {/* เอา truncate ออก เพื่อให้แสดงชื่อเต็ม */}
               <span className="text-xl font-extrabold text-gray-800 break-words">{booking.dentist.name}</span>
             </div>
 
@@ -68,23 +71,25 @@ export default function BookingCard({
                 </span>
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* ส่วนปุ่มด้านขวา */}
-        <div className="flex flex-row lg:flex-col xl:flex-row gap-3 min-w-[280px] mt-4 lg:mt-0 pt-6 lg:pt-0 border-t lg:border-t-0 border-gray-100">
-          <button
-            onClick={() => router.push(`/booking/edit?bid=${booking._id}`)}
-            className="flex-1 py-3.5 px-8 bg-gray-900 text-white font-bold rounded-2xl hover:bg-gray-700 transition-all active:scale-95 text-center shadow-md hover:shadow-lg"
-          >
-            Edit
-          </button>
-          <button
-            onClick={() => handleDelete(booking._id)}
-            className="flex-1 py-3.5 px-8 bg-red-50 text-red-600 font-bold rounded-2xl hover:bg-red-600 hover:text-white transition-all duration-200 active:scale-95 text-center shadow-sm"
-          >
-            Delete
-          </button>
+          </div>
+
+          {/* ส่วนปุ่มกด */}
+          <div className="flex flex-row gap-3 w-full lg:w-auto shrink-0">
+            <button
+              onClick={() => router.push(`/booking/edit?bid=${booking._id}`)}
+              className="flex-1 lg:flex-none lg:w-32 py-3.5 px-6 bg-gray-900 text-white font-bold rounded-2xl hover:bg-gray-700 transition-all active:scale-95 text-center shadow-md hover:shadow-lg"
+            >
+              Edit
+            </button>
+            <button
+              onClick={() => handleDelete(booking._id)}
+              className="flex-1 lg:flex-none lg:w-32 py-3.5 px-6 bg-red-50 text-red-600 font-bold rounded-2xl hover:bg-red-600 hover:text-white transition-all duration-200 active:scale-95 text-center shadow-sm"
+            >
+              Delete
+            </button>
+          </div>
+
         </div>
 
       </div>
