@@ -20,6 +20,7 @@ export default function EditAnnouncementPanel({ token, aid, initialData }: { tok
         if (!isConfirmed) return;
 
         try {
+            // ✅ ฝั่ง Client มองเห็น NEXT_PUBLIC_BACKEND_URL แน่นอน
             const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/announcements/${aid}`, {
                 method: "PUT",
                 headers: {
@@ -31,6 +32,7 @@ export default function EditAnnouncementPanel({ token, aid, initialData }: { tok
                     description,
                     logoURL,
                     bannerURL,
+                    isEdited: true, // 📌 เพิ่มบรรทัดนี้ เพื่อบอก Database ว่า "ฉันถูกแก้ไขแล้วนะ!"
                 }),
             });
 
