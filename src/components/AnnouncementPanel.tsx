@@ -220,7 +220,7 @@ export default function AnnouncementPanel({
           <div className="flex flex-wrap justify-center gap-8 w-full">
             {paginatedData.map((announcement: any) => (
               <Link key={announcement._id} href={`/announcement/${announcement._id}`} className="w-full md:w-[45%] h-[180px] bg-white rounded-xl shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:shadow-lg transition-all duration-300 overflow-hidden flex border border-gray-100 font-sukhumvit">
-                <AnnouncementCard id={announcement._id} logoSrc={transformDriveLink(announcement.logoURL)} title={announcement.title} date={announcement.createdAt} />
+                <AnnouncementCard id={announcement._id} logoSrc={transformDriveLink(announcement.logoURL)} title={announcement.title} date={announcement.createdAt} isEdited={announcement.isEdited} />
               </Link>
             ))}
           </div>

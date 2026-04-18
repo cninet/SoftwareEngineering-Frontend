@@ -8,12 +8,18 @@ const monthMap: Record<string, string> = {
 };
 
 export default function AnnouncementCard({
-  id, logoSrc, title, date, className = ''
+  id, 
+  logoSrc, 
+  title, 
+  date, 
+  isEdited = false, // 📌 1. เพิ่ม prop isEdited
+  className = ''
 }: {
   id: string;
   logoSrc: string;
   title: string;
   date: string | Date;
+  isEdited?: boolean; // 📌 กำหนด Type
   className?: string;
 }) {
   const dateObj = new Date(date);
@@ -45,21 +51,33 @@ export default function AnnouncementCard({
       <div className="w-[40%] relative flex-shrink-0">
         <Image
           src={logoSrc}
-          alt={title}
+          alt="announcement logo"
           fill={true}
           className="object-contain p-2"
+          unoptimized={true}
         />
       </div>
 
       {/* Description */}
       <div className="w-[60%] p-5 flex flex-col justify-between">
         <div>
-          <div className="flex items-center text-gray-500 font-bold mb-2 text-sm sm:text-base">
-            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            <span>Date : {formattedDate}</span>
+          {/* วันที่ และ Badge Edited */}
+          <div className="flex items-center flex-wrap text-gray-500 font-bold mb-2 text-sm sm:text-base gap-2">
+            <div className="flex items-center">
+              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              <span>Date : {formattedDate}</span>
+            </div>
+            
+            {/* 📌 2. แสดงป้าย Edited เมื่อค่าเป็น true */}
+            {isEdited && (
+              <span className="text-[11px] font-semibold text-amber-600 bg-amber-100 px-2 py-0.5 rounded border border-amber-200 leading-none">
+                Edited
+              </span>
+            )}
           </div>
+
           <h2
             className="text-[#4a4a4a] text-left text-lg sm:text-xl font-medium leading-snug line-clamp-3"
             dangerouslySetInnerHTML={{ __html: formatText(title) }}
