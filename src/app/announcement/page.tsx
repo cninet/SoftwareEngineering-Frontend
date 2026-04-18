@@ -19,7 +19,8 @@ export default async function AnnouncementPage({searchParams} : {searchParams: P
 
   return(
     <Suspense fallback={<Loading/>}>
-      <div className="text-center p-5">
+      {/* 📌 แก้ตรงนี้: เปลี่ยนจาก className="text-center p-5" เป็น "w-full" เพื่อลบขอบขาว */}
+      <div className="w-full">
         <AnnouncementPanel 
           totalPage={1}
           currentPage={currentPage} 
