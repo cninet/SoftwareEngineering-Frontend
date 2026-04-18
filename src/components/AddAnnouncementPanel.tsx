@@ -34,7 +34,7 @@ export default function AddAnnouncementPanel({ token }: { token: any }) {
       setError('You must be logged in to perform this action.');
       return;
     }
-
+   
     setIsLoading(true);
     setError(null);
     setSuccess(false);
