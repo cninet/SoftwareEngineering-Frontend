@@ -1,5 +1,6 @@
 'use client'
 import { useState, useMemo } from 'react';
+import Image from 'next/image';
 import { useRouter, useSearchParams, usePathname } from 'next/navigation';
 import AnnouncementCard from './AnnouncementCard';
 import { Link, Pagination } from '@mui/material';
@@ -165,7 +166,7 @@ export default function AnnouncementPanel({
             ) : isAdmin && (
               <button
                 onClick={() => router.push(`/announcement/manage`)}
-                className="bg-slate-900 text-white text-lg font-bold py-3 px-10 rounded-full hover:bg-slate-800 transition-all active:scale-95 shadow-md hover:shadow-lg"
+                className="bg-slate-900 text-white text-lg font-bold py-3 px-10 rounded-full hover:bg-slate-800 transition-all active:scale-95 shadow-md hover:shadow-lg cursor-pointer"
               >
                 Manage Announcements
               </button>
@@ -204,9 +205,9 @@ export default function AnnouncementPanel({
                   value={filterState}
                   onChange={(e) => handleFilterChange(setFilterState, e.target.value)}
                 >
-                  <option value="All">All Statuses</option>
-                  <option value="Edited">Edited Only</option>
-                  <option value="Not edited">Original Only</option>
+                  <option value="All">All Status</option>
+                  <option value="Not edited">Original</option>
+                  <option value="Edited">Edited</option>
                 </select>
               </div>
             </div>
@@ -251,9 +252,20 @@ export default function AnnouncementPanel({
                     <tr key={item._id} onClick={() => router.push(`/announcement/${item._id}`)} className="hover:bg-slate-50 transition-colors cursor-pointer group">
                       <td className="py-4 px-6">
                         <div className="flex items-center gap-4">
-                          {/* <div className="w-16 h-16 bg-white flex-shrink-0 flex items-center justify-center border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-                            {item.logoURL ? <img src={item.logoURL} alt="announcement" className="w-full h-full object-contain p-1 group-hover:scale-110 transition-transform duration-300" referrerPolicy="no-referrer" /> : <span className="text-[10px] text-slate-400 font-medium uppercase">No Img</span>}
-                          </div> */}
+                          <div className="w-16 h-16 bg-white flex-shrink-0 relative border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+                            {item.logoURL ? (
+                              <Image
+                                src={item.logoURL}
+                                alt="announcement"
+                                fill
+                                className="object-cover group-hover:scale-110 transition-transform duration-300"
+                              />
+                            ) : (
+                              <div className="w-full h-full flex items-center justify-center">
+                                <span className="text-[10px] text-slate-400 font-medium uppercase">No Img</span>
+                              </div>
+                            )}
+                          </div>
                           <span
                             className="text-base font-semibold leading-snug text-slate-800 group-hover:text-blue-600 transition-colors line-clamp-2"
                             dangerouslySetInnerHTML={{ __html: formatText(item.title) }}
@@ -270,7 +282,7 @@ export default function AnnouncementPanel({
                             Edited
                           </span>
                         ) : (
-                          <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-500 border border-slate-200">
+                          <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-bold bg-blue-50 text-blue-600 border border-blue-300">
                             Original
                           </span>
                         )}
