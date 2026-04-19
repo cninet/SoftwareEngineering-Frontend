@@ -19,7 +19,7 @@ export default async function AnnouncementDetailPage({ params }: { params: Promi
 
     return (
         <Suspense fallback={<Loading />}>
-            <div className={`w-full min-h-screen ${isAdmin ? 'bg-[#838383]' : 'bg-white'} py-10`}>
+            <div className={`w-full min-h-screen ${isAdmin ? 'bg-[#838383]' : 'bg-gradient-to-b from-[#B7FFFB] via-[#FFFFFF] to-[#FFFFFF]'} py-10`}>
                 <AnnouncementDetail announcementJsonReady={announcement} isAdmin={isAdmin} token={session?.user.token}/>
             </div>
         </Suspense>

@@ -19,7 +19,7 @@ export default async function AnnouncementPage({ searchParams }: { searchParams:
 
   return(
     <Suspense fallback={<Loading/>}>
-      <div className="w-full">
+      <div className={`w-full min-h-screen ${isAdmin ? 'bg-[#838383]' : 'bg-gradient-to-b from-[#B7FFFB] via-[#FFFFFF] to-[#FFFFFF]'}`}>
         <AnnouncementPanel 
           totalPage={1}
           currentPage={currentPage} 

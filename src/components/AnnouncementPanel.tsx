@@ -124,12 +124,9 @@ export default function AnnouncementPanel({
 
 
   return (
-    <section className={`!w-full !min-h-screen flex flex-col pt-12 pb-20 px-4 sm:px-8 font-sukhumvit ${isDashboard
-      ? '!bg-[#838383]'
-      : '!bg-white'
-      }`}>
+    <section className="w-full min-h-screen flex flex-col pt-12 pb-20 px-4 sm:px-8 font-sukhumvit">
 
-      <div className={`max-w-7xl mx-auto flex flex-col items-center w-full ${isDashboard ? 'bg-white p-10 sm:p-16 rounded-[3rem] shadow-sm border border-slate-200' : ''}`}>
+      <div className="max-w-7xl mx-auto flex flex-col items-center w-full bg-white p-10 sm:p-16 rounded-[3rem] shadow-sm border border-slate-200">
 
         {/* --- Header Section --- */}
         <div className="w-full flex flex-col items-center mb-10 text-center">
@@ -337,7 +334,7 @@ export default function AnnouncementPanel({
               ))}
               {paginatedData.length === 0 && (
                 <div className="col-span-1 lg:col-span-2 py-12 text-center text-slate-500 font-medium text-lg">
-                  No new announcements at this time.
+                  No announcements found.
                 </div>
               )}
             </div>
