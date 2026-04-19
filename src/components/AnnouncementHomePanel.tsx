@@ -11,7 +11,7 @@ export default function HomeAnnouncementSection({ announcementData }: { announce
     <section className="pt-8 pb-16 px-8 bg-white mb-6">
       <div className="max-w-6xl mx-auto">
         <div className="mb-8 text-left">
-          <h2 className="text-4xl font-bold text-black mb-2">Clinic Announcement</h2>
+          <h2 className="text-4xl font-bold text-black mb-2">Announcements</h2>
         </div>
         <div className="flex justify-center items-center py-16">
           <p className="text-gray-400 text-base">No new announcements at this time.</p>
@@ -25,7 +25,7 @@ export default function HomeAnnouncementSection({ announcementData }: { announce
       <div className="max-w-6xl mx-auto">
 
         <div className="mb-8 text-left">
-          <h2 className="text-4xl font-bold text-black mb-2">Clinic Announcement</h2>
+          <h2 className="text-4xl font-bold text-black mb-2">Announcements</h2>
         </div>
 
         <div className="flex flex-col md:flex-row gap-6 h-[456px]">

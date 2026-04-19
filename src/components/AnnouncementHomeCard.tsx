@@ -7,12 +7,13 @@ const monthMap: Record<string, string> = {
 };
 
 export default function FeaturedAnnouncementCard({
-  id, logoSrc, title, date
+  id, logoSrc, title, date, className = ''
 }: {
   id: string;
   logoSrc: string;
   title: string;
   date: string | Date;
+  className?: string;
 }) {
   const dateObj = new Date(date);
   const day = String(dateObj.getDate()).padStart(2, '0');
@@ -37,7 +38,7 @@ export default function FeaturedAnnouncementCard({
       .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
 
   return (
-    <div className="relative flex flex-col md:flex-row w-full h-full bg-white overflow-hidden font-sukhumvit">
+    <div className={`group relative flex flex-col md:flex-row w-full h-full bg-white overflow-hidden font-sukhumvit transition-all duration-300 hover:bg-slate-50/50 ${className}`}>
 
       {/* Left / Top — image */}
       <div className="w-full md:w-[55%] h-56 md:h-auto relative flex-shrink-0">
@@ -74,10 +75,10 @@ export default function FeaturedAnnouncementCard({
         </div>
 
         {/* Read more — span only, navigation handled by wrapping Link */}
-        <span className="flex items-center text-blue-600 font-bold text-sm w-fit group/btn hover:text-blue-800 transition-colors no-underline">
+        <span className="flex items-center text-blue-600 font-bold text-sm w-fit transition-colors duration-300 group-hover:text-blue-800 no-underline">
           <span>Read more</span>
           <svg
-            className="w-4 h-4 ml-1.5 transform group-hover/btn:translate-x-1.5 transition-transform duration-300"
+            className="w-4 h-4 ml-1.5 transform transition-transform duration-300 group-hover:translate-x-1.5"
             fill="none" stroke="currentColor" viewBox="0 0 24 24"
           >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
