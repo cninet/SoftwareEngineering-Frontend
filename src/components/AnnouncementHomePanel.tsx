@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link';
-import FeaturedAnnouncementCard from './FeaturedAnnouncementCard';
+import FeaturedAnnouncementCard from './AnnouncementHomeCard';
 import AnnouncementCard from './AnnouncementCard';
 
 export default function HomeAnnouncementSection({ announcementData }: { announcementData: AnnouncementItem[] }) {
