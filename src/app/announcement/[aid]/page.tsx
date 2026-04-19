@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth";
 import { Suspense } from "react";
 import getAnnouncement from "@/libs/getAnnouncement";
 import AnnouncementDetail from "@/components/AnnouncementDetail";
+import { notFound } from 'next/navigation';
 
 export default async function AnnouncementDetailPage({ params }: { params: Promise<{ aid: string }> }) {
     const { aid } = await params;
@@ -11,6 +12,10 @@ export default async function AnnouncementDetailPage({ params }: { params: Promi
     const announcement = await getAnnouncement(aid);
     const session = await getServerSession(authOptions);
     const isAdmin = session?.user.role === 'admin';
+
+    if (!announcement) {
+        notFound();
+    }
 
     return (
         <Suspense fallback={<Loading />}>
