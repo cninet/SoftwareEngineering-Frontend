@@ -1,8 +1,15 @@
 "use client";
 
 import Rating from "@mui/material/Rating";
+import useEmblaCarousel from "embla-carousel-react";
 
 export default function ReviewHomePanel({ reviews } : { reviews: ReviewJson }) {
+
+  const [emblaRef] = useEmblaCarousel({ 
+    loop: true,
+    align: "start", 
+    dragFree: true,
+  });
 
   const formatDateString = (date: string | Date) => {
     if (!date) return '-';
@@ -30,32 +37,37 @@ export default function ReviewHomePanel({ reviews } : { reviews: ReviewJson }) {
           Our Customer Feedbacks
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {reviews.data.map((review: ReviewItem) => (
-            <div key={review._id} className="bg-white p-6 rounded-2xl shadow-md flex flex-col h-full">
-              <h3 className="text-xl font-bold text-gray-900 mb-1">{review.title}</h3>
-              
-              <div className="flex mb-3">
-                <Rating name="read-only" value={review.rating} readOnly />
-              </div>
+        <div className="overflow-hidden cursor-grab active:cursor-grabbing" ref={emblaRef}>
+          <div className="flex -ml-6 my-5">
+            {reviews.data.map((review: ReviewItem) => (
+              <div key={review._id} className="flex-[0_0_100%] md:flex-[0_0_33.333333%] min-w-0 pl-6">
+                <div className="bg-white p-6 rounded-2xl shadow-md flex flex-col h-full">
+                  <h3 className="text-xl font-bold text-gray-900 mb-1">{review.title}</h3>
+                  
+                  <div className="flex mb-3">
+                    <Rating name="read-only" value={review.rating} readOnly />
+                  </div>
 
-              <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-grow">
-                {review.comment}
-              </p>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-grow">
+                    {review.comment}
+                  </p>
 
-              <div className="mt-auto">
-                <p className="text-xs text-gray-400 font-semibold">{review.user.name} to {review.dentist.name}</p>
-                <div className="text-[10px] text-gray-400">
-                  <p className="inline">{formatDateString(review.createdAt.toString())}</p>
-                  {
-                    review.isEdited ? 
-                    <p className="inline"> (Edited)</p>
-                    : null
-                  }
-                </div>
+                  <div className="mt-auto">
+                    <p className="text-xs text-gray-400 font-semibold">Dentist: {review.dentist.name}</p>
+                    <p className="text-xs text-gray-400 font-semibold">{review.user.name}</p>
+                    <div className="text-[10px] text-gray-400">
+                      <p className="inline">{formatDateString(review.createdAt.toString())}</p>
+                      {
+                        review.isEdited ? 
+                        <p className="inline"> (Edited)</p>
+                        : null
+                      }
+                    </div>
+                  </div>
+                </div>  
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
