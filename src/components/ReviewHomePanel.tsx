@@ -33,6 +33,7 @@ export default function ReviewHomePanel({ reviews } : { reviews: ReviewJson }) {
     emblaApi.on("reInit", onSelect);
   }, [emblaApi, setScrollSnaps, onSelect]);
 
+  // Format Date to Show
   const formatDateString = (date: string | Date) => {
     if (!date) return '-';
     const dateObj = new Date(date);
@@ -54,12 +55,18 @@ export default function ReviewHomePanel({ reviews } : { reviews: ReviewJson }) {
   
   return (
     <section className="py-16 px-40 bg-[#e3f2fd]"> 
-      <div className="max-w-6xl mx-auto">
+
+      <div className="max-w-6xl mx-auto my-5">
+
+        {/* Header Text */}
         <h2 className="text-4xl font-bold text-black mb-12 text-left">
           Our Customer Feedbacks
         </h2>
 
+        {/* Embla Wrapper */}
         <div className="relative px-4">
+
+          {/* Left Button */}
           <button 
             className="absolute left-[-20px] md:left-[-40px] top-1/2 -translate-y-1/2 z-10 
                       w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center 
@@ -69,6 +76,7 @@ export default function ReviewHomePanel({ reviews } : { reviews: ReviewJson }) {
             {"<"}
           </button>
 
+          {/* Right Button */}
           <button 
             className="absolute right-[-20px] md:right-[-40px] top-1/2 -translate-y-1/2 z-10 
                       w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center 
@@ -78,24 +86,40 @@ export default function ReviewHomePanel({ reviews } : { reviews: ReviewJson }) {
             {">"}
           </button>
 
+          {/* View Port */}
           <div className="overflow-hidden cursor-grab active:cursor-grabbing" ref={emblaRef}>
+
+            {/* Container */}
             <div className="flex -ml-6 my-5">
+
+              {/* Comment Card */}
               {reviews.data.map((review: ReviewItem) => (
                 <div key={review._id} className="flex-[0_0_100%] md:flex-[0_0_33.333333%] min-w-0 pl-6">
                   <div className="bg-white p-6 rounded-2xl shadow-md flex flex-col h-full select-none">
+                    
+                    {/* Title */}
                     <h3 className="text-xl font-bold text-gray-900 mb-1">{review.title}</h3>
                     
+                    {/* Rating */}
                     <div className="flex mb-3">
                       <Rating name="read-only" value={review.rating} readOnly />
                     </div>
 
+                    {/* Comment */}
                     <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-grow">
                       {review.comment}
                     </p>
 
+                    {/* Author */}
                     <div className="mt-auto">
+
+                      {/* Dentist Name */}
                       <p className="text-xs text-gray-400 font-semibold">Dentist: {review.dentist.name}</p>
+
+                      {/* Patient Name */}
                       <p className="text-xs text-gray-400 font-semibold">{review.user.name}</p>
+
+                      {/* Date with Edited Tag */}
                       <div className="text-[10px] text-gray-400">
                         <p className="inline">{formatDateString(review.createdAt.toString())}</p>
                         {
@@ -104,14 +128,21 @@ export default function ReviewHomePanel({ reviews } : { reviews: ReviewJson }) {
                           : null
                         }
                       </div>
+
                     </div>
+
                   </div>  
+                  
                 </div>
               ))}
+
             </div>
+
           </div>
+
         </div>
 
+        {/* Dot */}
         <div className="flex justify-center gap-2 mt-8">
           {scrollSnaps.map((_, index) => (
             <button
@@ -123,7 +154,9 @@ export default function ReviewHomePanel({ reviews } : { reviews: ReviewJson }) {
             />
           ))}
         </div>
+
       </div>
+
     </section>
   );
 }
