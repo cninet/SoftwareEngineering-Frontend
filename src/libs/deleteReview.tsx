@@ -1,0 +1,24 @@
+'use server'
+import { revalidateTag } from 'next/cache'
+
+export default async function deleteReview(
+	  rid: string,  
+    token: string
+){
+    const respond = await fetch(`${process.env.BACKEND_URL}/api/reviews/${rid}`, {
+      method: "DELETE",
+		  headers:{
+			authorization: `Bearer ${token}`,
+		},
+    })
+
+    if(!respond.ok){
+        const errText = await respond.text()
+        throw new Error(`Failed to delete review: ${respond.status} - ${errText}`)
+    }
+
+    revalidateTag('reviews')
+    revalidateTag(`review-${rid}`)
+    
+    return await respond.json()
+}
