@@ -75,10 +75,7 @@ export default function AnnouncementCard({
           dangerouslySetInnerHTML={{ __html: formatText(title) }}
         />
 
-        {/* ✨ ส่วนล่าง: ปุ่ม Read more */}
-        {/* 📌 เปลี่ยนจาก div เป็น Link และใช้ group/btn เพื่อผูก Hover Effect ไว้แค่ตรงนี้ */}
-        <Link
-          href={`/announcement/${id}`}
+        <div
           className="mt-auto pt-4 flex items-center text-blue-600 font-bold text-sm w-fit group/btn hover:text-blue-800 transition-colors after:content-[''] after:absolute after:inset-0 after:z-10"
         >
           <span>Read more</span>
@@ -88,7 +85,7 @@ export default function AnnouncementCard({
           >
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
           </svg>
-        </Link>
+        </div>
 
       </div>
     </div>
