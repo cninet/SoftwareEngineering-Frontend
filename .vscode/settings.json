@@ -1,4 +1,9 @@
 {
+<<<<<<< HEAD
   "snyk.advanced.autoSelectOrganization": true,
   "snyk.advanced.organization": "07e5a922-b107-4c61-be87-592ac067a529"
 }
+=======
+  "snyk.advanced.autoSelectOrganization": false
+}
+>>>>>>> fd72bc2367b25277d7ab6a0253107e4967f521dc

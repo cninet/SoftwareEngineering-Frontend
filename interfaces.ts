@@ -72,3 +72,44 @@ interface AnnouncementItem {
   isEdited: boolean;
   createdAt: Date | string;   
 }
+
+interface ReviewItem {
+  _id: string;
+  user: {
+    _id: string;
+    name: string;
+  };
+  dentist: {
+    _id: string;
+    name: string;
+  };
+  rating: number;
+  title: string;
+  comment: string;
+  isEdited: boolean;
+  isDeleted: boolean;
+  deletedAt?: Date | string;
+  createdAt: Date | string;
+}
+
+interface ReviewJson {
+  success: boolean;
+  count: number;
+  pagination: {
+    total?: number;
+    next?: {
+      page: number;
+      limit: number;
+    };
+    prev?: {
+      page: number;
+      limit: number;
+    };
+  } | Object;
+  data: ReviewItem[];
+}
+
+interface ReviewJsonSingle {
+  success: boolean;
+  data: ReviewItem;
+}
