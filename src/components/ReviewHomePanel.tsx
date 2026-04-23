@@ -8,7 +8,8 @@ export default function ReviewHomePanel({ reviews } : { reviews: ReviewJson }) {
   const [emblaRef] = useEmblaCarousel({ 
     loop: true,
     align: "start", 
-    dragFree: true,
+    dragFree: false,
+    skipSnaps: true
   });
 
   const formatDateString = (date: string | Date) => {
