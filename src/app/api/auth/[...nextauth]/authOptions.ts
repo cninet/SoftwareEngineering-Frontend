@@ -28,7 +28,7 @@ export const authOptions: AuthOptions = {
                 const profile = await getUserProfile(user.token)
 
                 return {
-                    id: profile.data.id,
+                    id: profile.data._id,
                     name: profile.data.name,
                     email: profile.data.email,
                     telephone: profile.data.telephone,

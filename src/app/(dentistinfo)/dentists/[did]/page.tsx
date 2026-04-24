@@ -14,6 +14,8 @@ export default async function DentistDetailPage({ params }: { params: Promise<{ 
     const dentists = await getDentist(did);
     const session = await getServerSession(authOptions);
     const isAdmin = session?.user.role === 'admin';
+    const currentUserId = session?.user.id
+    const token = session?.user.token
 
     const reviews = await getReviews({ page: 1, limit: 10, dentistId: did});
 
@@ -32,7 +34,7 @@ export default async function DentistDetailPage({ params }: { params: Promise<{ 
                 hasBooking={hasBooking} 
                 token={session?.user.token} 
             />
-            <ReviewDentistPanel reviews={reviews}/>
+            <ReviewDentistPanel reviews={reviews} isAdmin={isAdmin} currentUserId={currentUserId} token={token}/>
         </Suspense>
     );
 }
