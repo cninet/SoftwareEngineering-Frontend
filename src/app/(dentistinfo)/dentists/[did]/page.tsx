@@ -17,7 +17,7 @@ export default async function DentistDetailPage({ params }: { params: Promise<{ 
     const currentUserId = session?.user.id
     const token = session?.user.token
 
-    const reviews = await getReviews({ page: 1, limit: 10, dentistId: did});
+    const reviews = await getReviews({ page: 1, limit: 1000, dentistId: did});
 
     let bookings = null;
     if (session) {
