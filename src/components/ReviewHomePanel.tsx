@@ -81,8 +81,11 @@ export default function ReviewHomePanel({ reviews }: { reviews: ReviewJson }) {
                     {/* Title */}
                     <h3 className="text-xl font-bold text-gray-900 mb-1">{review.title}</h3>
 
+                    {/* Dentist Name */}
+                    <p className="text-xs text-gray-400 font-semibold my-1">Dentist: {review.dentist.name}</p>
+
                     {/* Rating */}
-                    <div className="flex mb-3">
+                    <div className="flex my-3">
                       <Rating name="read-only" value={review.rating} readOnly />
                     </div>
 
@@ -93,9 +96,6 @@ export default function ReviewHomePanel({ reviews }: { reviews: ReviewJson }) {
 
                     {/* Author */}
                     <div className="mt-auto">
-
-                      {/* Dentist Name */}
-                      <p className="text-xs text-gray-400 font-semibold">Dentist: {review.dentist.name}</p>
 
                       {/* Patient Name */}
                       <p className="text-xs text-gray-400 font-semibold">{review.user.name}</p>
