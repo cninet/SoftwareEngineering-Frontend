@@ -7,7 +7,7 @@ import { useState } from "react";
 import { CircularProgress } from "@mui/material";
 import deleteDentist from "@/libs/deleteDentist";
 
-export default function DentistDetail({dentistJsonReady, did, isAdmin, hasBooking, token}: {dentistJsonReady: DentistJsonSingle, did: string, isAdmin: boolean, hasBooking: boolean, token?: string}) {
+export default function DentistDetail({dentistJsonReady, did, isAdmin, hasBooking, token, isEditView = false}: {dentistJsonReady: DentistJsonSingle, did: string, isAdmin: boolean, hasBooking: boolean, token?: string, isEditView?: boolean;}) {
     const router = useRouter();
     
     const [isDeleting, setIsDeleting] = useState(false);
@@ -95,9 +95,11 @@ export default function DentistDetail({dentistJsonReady, did, isAdmin, hasBookin
                                     </div>
                                 ) : (
                                     <Link href={`/booking?did=${did}`} className="w-full sm:w-auto">
-                                        <button className="cursor-pointer bg-black text-white text-xl font-bold py-3 px-10 rounded-full border border-gray-200 shadow-md hover:bg-gray-800 transition active:scale-95">
-                                            Book Now
-                                        </button>
+                                        {!isEditView && (
+                                            <button className="cursor-pointer bg-black text-white text-xl font-bold py-3 px-10 rounded-full border border-gray-200 shadow-md hover:bg-gray-800 transition active:scale-95">
+                                                Book Now
+                                            </button>
+                                        )}
                                     </Link>
                                 )
                             }

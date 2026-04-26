@@ -34,7 +34,7 @@ export default async function DentistDetailPage({ params }: { params: Promise<{ 
                 hasBooking={hasBooking} 
                 token={session?.user.token} 
             />
-            <ReviewDentistPanel reviews={reviews} isAdmin={isAdmin} currentUserId={currentUserId} token={token}/>
+            <ReviewDentistPanel reviews={reviews} isAdmin={isAdmin} currentUserId={currentUserId} token={token} did={did}/>
         </Suspense>
     );
 }

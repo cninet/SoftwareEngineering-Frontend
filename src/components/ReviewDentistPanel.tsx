@@ -6,17 +6,20 @@ import dayjs from "dayjs"
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { Rating } from "@mui/material"
 import addReview from "@/libs/addReview"
+import Link from 'next/link';
 
 export default function ReviewDentistPanel({
   reviews,
   isAdmin,
   currentUserId,
-  token
+  token,
+  did
 }: {
   reviews: ReviewJson,
   isAdmin: boolean,
   currentUserId: string | undefined,
   token: string | undefined
+  did: string;
 }) {
 
   const params = useParams();
@@ -173,7 +176,7 @@ export default function ReviewDentistPanel({
 
                                 {canEdit && (
                                   <li>
-                                    <a href="#" className="block py-2 px-4 hover:bg-gray-100">Edit</a>
+                                    <Link href={`/dentists/${did}/reviews/${review._id}/edit`} className="block py-2 px-4 hover:bg-gray-100">Edit</Link>
                                   </li>
                                 )}
 

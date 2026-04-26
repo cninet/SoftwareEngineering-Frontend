@@ -4,7 +4,8 @@ import { notFound } from "next/navigation";
 
 export default async function getReview(id: string): Promise<ReviewJsonSingle> {
 	const respond = await fetch(`${process.env.BACKEND_URL}/api/reviews/${id}`, {
-		next: { tags: ['reviews', `review-${id}`], revalidate: 3600 }
+		next: { tags: ['reviews', `review-${id}`]},
+		cache: 'no-store'
 	})
 
 	if (respond.status === 404) {
