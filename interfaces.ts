@@ -42,9 +42,9 @@ interface BookingJsonSingle {
 
 interface AnnouncementJson {
 	success:boolean,
+  total: number,
 	count:number,
 	pagination: {
-		total: number,
 		next: {
 			page: number,
 			limit: number
@@ -94,6 +94,7 @@ interface ReviewItem {
 
 interface ReviewJson {
   success: boolean;
+  total: number;
   count: number;
   pagination: {
     total?: number;
