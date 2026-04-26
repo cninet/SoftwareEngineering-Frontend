@@ -117,7 +117,7 @@ export default function ReviewDentistPanel({
             <button type="submit"
 
               disabled={isSubmitting}
-              className="bg-black inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 hover:bg-primary-800 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="bg-black inline-flex items-center py-2.5 px-4 text-md font-bold text-center text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 hover:bg-primary-800 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
             >
               {isSubmitting ? 'Posting...' : 'Post comment'}
             </button>
