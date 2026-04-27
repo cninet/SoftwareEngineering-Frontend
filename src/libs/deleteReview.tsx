@@ -19,6 +19,6 @@ export default async function deleteReview(
 
     revalidateTag('reviews')
     revalidateTag(`review-${rid}`)
-    
+    revalidateTag('dentists')
     return await respond.json()
 }

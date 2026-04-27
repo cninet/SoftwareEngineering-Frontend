@@ -27,5 +27,6 @@ export default async function addReview(
     }
 
     revalidateTag('reviews')
+    revalidateTag('dentists')
     return await respond.json()
 }
